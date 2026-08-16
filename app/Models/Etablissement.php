@@ -54,4 +54,18 @@ class Etablissement extends Model
     {
         return $this->hasMany(Inscription::class, 'etablissement_id', 'id');
     }
+
+    /**
+ * Un établissement peut signaler plusieurs alertes.
+ */
+public function alertes()
+{
+    return $this->hasMany(
+        Alerte::class,
+        'etablissement_id',
+        'id'
+    );
 }
+
+}
+

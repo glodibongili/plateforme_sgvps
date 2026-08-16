@@ -2,29 +2,26 @@
 
 namespace App\Models;
 
-
-
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable{
+class User extends Authenticatable
+{
+
     use HasFactory, Notifiable;
 
-    /*
-      Les attributs assignables en masse.
+    /**
+     * Attributs assignables en masse.
      */
     protected $fillable = [
         'nom',
         'postnom',
         'prenom',
         'sexe',
-        'telephone',
         'email',
         'password',
-        'photo',
+        'photo_profil',
         'role_id',
         'compte_id',
         'province_id',
@@ -32,7 +29,7 @@ class User extends Authenticatable{
     ];
 
     /**
-     * Les attributs masqués.
+     * Attributs masqués.
      */
     protected $hidden = [
         'password',
@@ -56,7 +53,11 @@ class User extends Authenticatable{
      */
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(
+            Role::class,
+            'role_id',
+            'id'
+        );
     }
 
     /**
@@ -64,7 +65,11 @@ class User extends Authenticatable{
      */
     public function compte()
     {
-        return $this->belongsTo(Compte::class, 'compte_id');
+        return $this->belongsTo(
+            Compte::class,
+            'compte_id',
+            'id'
+        );
     }
 
     /**
@@ -72,8 +77,24 @@ class User extends Authenticatable{
      */
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_id');
+        return $this->belongsTo(
+            Province::class,
+            'province_id',
+            'id'
+        );
     }
+
+    /**
+ * Un utilisateur possède plusieurs activités dans le journal.
+ */
+public function journalActivites()
+{
+    return $this->hasMany(
+        JournalActivite::class,
+        'user_id',
+        'id'
+    );
+}
 
     /**
      * Vérifie si l'utilisateur possède un rôle.
@@ -90,4 +111,8 @@ class User extends Authenticatable{
     {
         return $this->actif === true;
     }
+
+
+
+
 }

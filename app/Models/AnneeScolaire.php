@@ -16,8 +16,8 @@ class AnneeScolaire extends Model
     protected $fillable = [
         'libelle',
         'date_debut',
-        'en_cours',
         'date_fin',
+        'en_cours',
         'actif',
     ];
 
@@ -38,18 +38,6 @@ class AnneeScolaire extends Model
     {
         return $this->hasMany(
             Inscription::class,
-            'annee_scolaire_id',
-            'id'
-        );
-    }
-
-    /**
-     * Une année scolaire possède plusieurs résultats scolaires.
-     */
-    public function resultatsScolaires()
-    {
-        return $this->hasMany(
-            ResultatScolaire::class,
             'annee_scolaire_id',
             'id'
         );

@@ -14,26 +14,28 @@ class Compte extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nom_utilisateur',
-        'mot_de_passe',
+        'nom_compte',
+        'description',
+        'derniere_connexion',
         'statut',
-        'id_role',
-        'id_user',
     ];
 
-    /**
-     * Un compte appartient à un rôle.
-     */
-    public function role()
+    protected function casts(): array
     {
-        return $this->hasOne(Role::class, 'id_role', 'id');
+        return [
+            'derniere_connexion' => 'datetime',
+        ];
     }
 
     /**
-     * Un compte appartient à un utilisateur.
+     * Un compte possède plusieurs utilisateurs.
      */
-    public function user()
+    public function users()
     {
-        return $this->hasOne(User::class, 'id_user', 'id');
+        return $this->hasMany(
+            User::class,
+            'compte_id',
+            'id'
+        );
     }
 }

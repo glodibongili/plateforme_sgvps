@@ -85,24 +85,24 @@ class Inscription extends Model
     }
 
     /**
-     * Une inscription peut avoir plusieurs résultats scolaires.
+     * Une inscription possède plusieurs notes.
      */
-    public function resultatsScolaires()
+    public function notes()
     {
         return $this->hasMany(
-            ResultatScolaire::class,
+            Note::class,
             'inscription_id',
             'id'
         );
     }
 
     /**
-     * Une inscription peut avoir plusieurs bulletins.
+     * Une inscription possède un résultat scolaire final.
      */
-    public function bulletins()
+    public function resultatScolaire()
     {
-        return $this->hasMany(
-            Bulletin::class,
+        return $this->hasOne(
+            ResultatScolaire::class,
             'inscription_id',
             'id'
         );

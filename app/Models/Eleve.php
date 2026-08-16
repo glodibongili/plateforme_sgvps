@@ -56,27 +56,14 @@ class Eleve extends Model
     }
 
     /**
-     * Un élève possède plusieurs résultats scolaires.
+     * Un élève peut avoir plusieurs alertes.
      */
-    public function resultatsScolaires()
+    public function alertes()
     {
         return $this->hasMany(
-            ResultatScolaire::class,
-            'eleve_id',
-            'id'
-        );
-    }
-
-    /**
-     * Un élève possède plusieurs bulletins.
-     */
-    public function bulletins()
-    {
-        return $this->hasMany(
-            Bulletin::class,
+            Alerte::class,
             'eleve_id',
             'id'
         );
     }
 }
-

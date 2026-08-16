@@ -15,7 +15,6 @@ class Niveau extends Model
 
     protected $fillable = [
         'nom_niveau',
-        'description',
         'actif',
     ];
 
@@ -31,6 +30,10 @@ class Niveau extends Model
      */
     public function classes()
     {
-        return $this->hasMany(Classe::class, 'niveau_id', 'id');
+        return $this->hasMany(
+            Classe::class,
+            'niveau_id',
+            'id'
+        );
     }
 }

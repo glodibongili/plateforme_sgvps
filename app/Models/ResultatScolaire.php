@@ -13,9 +13,6 @@ class ResultatScolaire extends Model
 
     protected $primaryKey = 'id';
 
-    /**
-     * Attributs pouvant être remplis en masse.
-     */
     protected $fillable = [
         'inscription_id',
         'moyenne_generale',
@@ -24,9 +21,6 @@ class ResultatScolaire extends Model
         'observation',
     ];
 
-    /**
-     * Conversion des attributs.
-     */
     protected function casts(): array
     {
         return [
@@ -43,6 +37,18 @@ class ResultatScolaire extends Model
         return $this->belongsTo(
             Inscription::class,
             'inscription_id',
+            'id'
+        );
+    }
+
+    /**
+     * Un résultat scolaire possède plusieurs bulletins.
+     */
+    public function bulletins()
+    {
+        return $this->hasMany(
+            Bulletin::class,
+            'resultat_scolaire_id',
             'id'
         );
     }

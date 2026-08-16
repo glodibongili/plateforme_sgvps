@@ -20,10 +20,16 @@ class Role extends Model
     ];
 
     /**
-     * Un rôle possède plusieurs comptes.
+     * Un rôle possède plusieurs utilisateurs.
      */
-    public function comptes()
+    public function users()
     {
-        return $this->hasMany(Compte::class, 'id_role', 'id');
+        return $this->hasMany(
+            User::class,
+            'role_id',
+            'id'
+        );
     }
+
+
 }
