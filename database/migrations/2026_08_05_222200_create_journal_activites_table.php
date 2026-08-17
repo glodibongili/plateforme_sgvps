@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('user_agent')->nullable();
 
         // Date et heure de l'action
-            $table->timestamp('date_action')();
+            $table->timestamp('date_action');
 
             $table->timestamps();
         });

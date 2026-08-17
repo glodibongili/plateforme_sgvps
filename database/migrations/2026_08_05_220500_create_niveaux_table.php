@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sections', function (Blueprint $table) {
+        Schema::create('niveaux', function (Blueprint $table) {
             // Clé primaire
             $table->id();
 
-            // nom de la section
-            $table->string('nom_section', 100)->unique();
+            // nom du niveau
+            $table->string('nom_niveau', 100)->unique();
 
-            //Description de la section
+
+            // Description du niveau
             $table->text('description')->nullable();
 
-            //Statut de la section
-            $table->boolean('actif')->default('true');
+
+            // Statut du niveau
+            $table->enum('statut', ['actif', 'inactif'])->default('actif');
+
 
             // Date de création et de mise à jour
             $table->timestamps();
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('niveaux');
     }
 };
