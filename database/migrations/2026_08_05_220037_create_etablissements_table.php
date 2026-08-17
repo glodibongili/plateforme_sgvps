@@ -38,7 +38,7 @@ return new class extends Migration
             $table->enum('statut', ['Actif', 'Inactif'])->default('Actif');
 
             // Province (clé étrangère)
-            $table->foreignId('id_province')
+            $table->foreignId('province_id')
                   ->constrained('provinces')
                   ->cascadeOnUpdate()
                   ->restrictOnDelete();
