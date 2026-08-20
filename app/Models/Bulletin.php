@@ -46,4 +46,16 @@ class Bulletin extends Model
             'id'
         );
     }
+
+    /**
+ * Un bulletin peut avoir plusieurs vérifications.
+ */
+    public function verifications()
+    {
+        return $this->hasMany(
+           Verification::class,
+           'bulletin_id',
+           'id'
+        );
+   }
 }

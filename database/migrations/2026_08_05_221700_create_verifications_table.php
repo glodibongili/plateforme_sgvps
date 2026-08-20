@@ -36,7 +36,8 @@ return new class extends Migration
             $table->enum('resultat', ['Authentique', 'Suspect', 'Falsifié']);
 
         // Motif ou commentaire
-            $table->text('Observation')->nullable();
+        $table->text('observation')->nullable();
+
 
             $table->timestamps();
         });

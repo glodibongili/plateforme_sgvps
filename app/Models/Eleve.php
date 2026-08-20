@@ -66,4 +66,27 @@ class Eleve extends Model
             'id'
         );
     }
+
+    /**
+ * Un élève peut avoir plusieurs transferts.
+ */
+    public function transferts()
+   {
+        return $this->hasMany(
+            Transfert::class,
+            'eleve_id',
+            'id'
+       );
+   }
+   /**
+ * Un élève peut avoir plusieurs pièces jointes.
+ */
+    public function pieceJointes()
+    {
+        return $this->hasMany(
+            PieceJointe::class,
+            'eleve_id',
+            'id'
+        );
+    }
 }

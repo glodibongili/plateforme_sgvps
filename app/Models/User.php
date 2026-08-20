@@ -87,14 +87,14 @@ class User extends Authenticatable
     /**
  * Un utilisateur possède plusieurs activités dans le journal.
  */
-public function journalActivites()
-{
-    return $this->hasMany(
-        JournalActivite::class,
-        'user_id',
-        'id'
-    );
-}
+    public function journalActivites()
+    {
+        return $this->hasMany(
+          JournalActivite::class,
+          'user_id',
+          'id'
+       );
+    }
 
     /**
      * Vérifie si l'utilisateur possède un rôle.
@@ -102,6 +102,30 @@ public function journalActivites()
     public function hasRole(string $roleName): bool
     {
         return $this->role?->nom_role === $roleName;
+    }
+
+    /**
+ * Un utilisateur possède plusieurs vérifications.
+ */
+    public function verifications()
+    {
+        return $this->hasMany(
+            Verification::class,
+            'user_id',
+            'id'
+        );
+    }
+
+        /**
+  * Un utilisateur possède plusieurs notifications.
+  */
+   public function notifications()
+   {
+        return $this->hasMany(
+           Notification::class,
+           'user_id',
+           'id'
+        );
     }
 
     /**

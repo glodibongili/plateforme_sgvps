@@ -42,4 +42,16 @@ class AnneeScolaire extends Model
             'id'
         );
     }
+
+    /**
+ * Une année scolaire possède plusieurs classes.
+ */
+    public function classes()
+    {
+        return $this->hasMany(
+          Classe::class,
+          'annee_scolaire_id',
+          'id'
+        );
+    }
 }

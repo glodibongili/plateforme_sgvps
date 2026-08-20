@@ -14,13 +14,15 @@ class Classe extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nom_classe',
-        'etablissement_id',
-        'niveau_id',
-        'section_id',
-        'option_id',
-        'actif',
-    ];
+    'nom_classe',
+    'capacite',
+    'etablissement_id',
+    'annee_scolaire_id',
+    'niveau_id',
+    'section_id',
+    'option_id',
+    'actif',
+];
 
     protected function casts(): array
     {
@@ -88,4 +90,13 @@ class Classe extends Model
             'id'
         );
     }
+
+    public function anneeScolaire()
+{
+    return $this->belongsTo(
+        AnneeScolaire::class,
+        'annee_scolaire_id',
+        'id'
+    );
+}
 }

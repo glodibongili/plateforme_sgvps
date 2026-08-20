@@ -13,6 +13,9 @@ class JournalActivite extends Model
 
     protected $primaryKey = 'id';
 
+    /**
+     * Attributs pouvant être remplis en masse.
+     */
     protected $fillable = [
         'user_id',
         'action',
@@ -22,15 +25,26 @@ class JournalActivite extends Model
         'date_action',
     ];
 
-    protected $casts = [
-        'date_action' => 'datetime',
-    ];
+    /**
+     * Conversion des attributs.
+     */
+    protected function casts(): array
+    {
+        return [
+            'date_action' => 'datetime',
+        ];
+    }
 
     /**
-     * Le journal appartient à un utilisateur.
+     * Une activité du journal appartient à un utilisateur.
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(
+            User::class,
+            'user_id',
+            'id'
+        );
     }
 }
+

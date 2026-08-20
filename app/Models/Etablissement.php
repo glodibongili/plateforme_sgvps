@@ -58,14 +58,36 @@ class Etablissement extends Model
     /**
  * Un établissement peut signaler plusieurs alertes.
  */
-public function alertes()
-{
-    return $this->hasMany(
-        Alerte::class,
-        'etablissement_id',
-        'id'
-    );
-}
+    public function alertes()
+    {
+         return $this->hasMany(
+           Alerte::class,
+           'etablissement_id',
+            'id'
+       );
+   }
+   /**
+ * Un établissement peut être l'origine de plusieurs transferts.
+ */
+    public function transfertsOrigine()
+    {
+        return $this->hasMany(
+          Transfert::class,
+          'etablissement_origine_id',
+          'id'
+       );
+    }
+
+    /**
+ * Un établissement peut être la destination de plusieurs transferts.
+ */
+    public function transfertsDestination()
+    {
+        return $this->hasMany(
+          Transfert::class,
+          'etablissement_destination_id',
+          'id'
+       );
+    }
 
 }
-
